@@ -59,9 +59,16 @@ if __name__ == '__main__':
     conn = psycopg2.connect("dbname='joveo' user='postgres' host='localhost' password='Newuser1234**'")
     cur = conn.cursor()
 
-    cur.execute("""SELECT * FROM information_schema.columns where table_schema = 'public'""")
-    x = cur.fetchall()
-    print(x)
+    try:
+        cur.execute("CREATE TABLE joveo_users (	id serial PRIMARY KEY, email VARCHAR (50) UNIQUE,display_name VARCHAR (50));")
+    except:
+        print("joveo_users already exists")
+
+    try:
+        cur.execute("CREATE TABLE scopes (	id serial PRIMARY KEY,	email VARCHAR (50) ,name VARCHAR (50),application VARCHAR (50),instanceId VARCHAR (50),metadata JSONB,	CONSTRAINT fk_email FOREIGN KEY(email) REFERENCES joveo_users(email))")
+    except:
+        print("scopes already exists")
+
     for usr in unique_usr_data:
         cur.execute(
             'INSERT INTO "joveo_users" (email, display_name) VALUES (%s, %s)',
