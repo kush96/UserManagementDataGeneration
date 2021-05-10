@@ -69,10 +69,17 @@ if __name__ == '__main__':
     except:
         print("scopes already exists")
 
+    cnt=0
     for usr in unique_usr_data:
-        cur.execute(
-            'INSERT INTO "joveo_users" (email, display_name) VALUES (%s, %s)',
-            (usr['email'], usr["name"]))
+        try:
+            cur.execute(
+                'INSERT INTO "joveo_users" (email, display_name) VALUES (%s, %s)',
+                (usr['email'], usr["name"]))
+        except Exception as e:
+            print(usr)
+            cnt += 1
+
+    print("cnt = "+cnt)
 
     for usrStr in per_user_data:
         scopes = per_user_data[usrStr]
