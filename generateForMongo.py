@@ -8,7 +8,7 @@ users_attributes_col = mojo_db.get_collection('users_attributes')
 scopes_coll = mojo_db.get_collection('scopes')
 
 RANDOM_COUNT_SAMPLE = 10
-TOTAL_USER = 10
+TOTAL_USER = 100000
 SCOPE_COUNT = 100
 domains = ["joveo.com", "gmail.com", "aol.com", "mail.com", "mail.kz", "yahoo.com"]
 letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"]
