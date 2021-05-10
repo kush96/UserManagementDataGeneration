@@ -3,6 +3,7 @@ import pprint
 import psycopg2
 import json
 import ast
+import traceback
 
 from psycopg2._json import Json
 
@@ -64,6 +65,7 @@ if __name__ == '__main__':
     except:
         print("joveo_users already exists")
 
+
     try:
         cur.execute("CREATE TABLE scopes (	id serial PRIMARY KEY,	email VARCHAR (50) ,name VARCHAR (50),application VARCHAR (50),instanceId VARCHAR (50),metadata JSONB,	CONSTRAINT fk_email FOREIGN KEY(email) REFERENCES joveo_users(email))")
     except:
@@ -76,7 +78,8 @@ if __name__ == '__main__':
                 'INSERT INTO "joveo_users" (email, display_name) VALUES (%s, %s)',
                 (usr['email'], usr["name"]))
         except Exception as e:
-            print(e)
+            tb = traceback.format_exc()
+            print(tb)
             raise e
 
     print("cnt = "+cnt)
