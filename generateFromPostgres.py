@@ -76,8 +76,8 @@ if __name__ == '__main__':
                 'INSERT INTO "joveo_users" (email, display_name) VALUES (%s, %s)',
                 (usr['email'], usr["name"]))
         except Exception as e:
-            print(usr)
-            cnt += 1
+            print(e)
+            raise e
 
     print("cnt = "+cnt)
 
