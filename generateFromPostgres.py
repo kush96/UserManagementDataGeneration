@@ -59,6 +59,9 @@ if __name__ == '__main__':
     conn = psycopg2.connect("dbname='joveo' user='postgres' host='localhost' password='Newuser1234**'")
     cur = conn.cursor()
 
+    cur.execute("""SELECT * FROM information_schema.columns where table_schema = 'public'""")
+    x = cur.fetchall()
+    print(x)
     for usr in unique_usr_data:
         cur.execute(
             'INSERT INTO "joveo_users" (email, display_name) VALUES (%s, %s)',
