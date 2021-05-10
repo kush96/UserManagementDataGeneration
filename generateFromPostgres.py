@@ -56,12 +56,12 @@ def fetch_unique_users_from_file():
 if __name__ == '__main__':
     fetch_users_from_file()
     fetch_unique_users_from_file()
-    conn = psycopg2.connect("dbname='joveo' user='postgres' host='localhost' password='Newuser1234***'")
+    conn = psycopg2.connect("dbname='joveo' user='postgres' host='localhost' password='Newuser1234**'")
     cur = conn.cursor()
 
     for usr in unique_usr_data:
         cur.execute(
-            'INSERT INTO joveo.joveo_users (email, display_name) VALUES (%s, %s)',
+            'INSERT INTO joveo_users (email, display_name) VALUES (%s, %s)',
             (usr['email'], usr["name"]))
 
     for usrStr in per_user_data:
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         for scope in scopes:
             data = json.dumps(scope["metadata"])
             cur.execute(
-                'INSERT INTO joveo.scopes (email, application, instanceId, metadata) VALUES (%s, %s, %s,%s)',
+                'INSERT INTO scopes (email, application, instanceId, metadata) VALUES (%s, %s, %s,%s)',
                 (scope['email'], scope["application"], scope["instanceId"], Json(ast.literal_eval(scope['metadata']))))
 
     pprint.pprint(per_user_data)
