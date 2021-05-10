@@ -56,7 +56,7 @@ def fetch_unique_users_from_file():
 if __name__ == '__main__':
     fetch_users_from_file()
     fetch_unique_users_from_file()
-    conn = psycopg2.connect("dbname='joveo' user='postgres' host='localhost' password='Newuser1234**'")
+    conn = psycopg2.connect("dbname='joveo' user='postgres' host='localhost' password='Newuser1234***'")
     cur = conn.cursor()
 
     for usr in unique_usr_data:
