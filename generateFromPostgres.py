@@ -75,7 +75,6 @@ if __name__ == '__main__':
             (usr['email'], usr["name"]))
 
     for usrStr in per_user_data:
-        print(usrStr)
         scopes = per_user_data[usrStr]
         for scope in scopes:
             data = json.dumps(scope["metadata"])
@@ -83,7 +82,6 @@ if __name__ == '__main__':
                 'INSERT INTO scopes (email, application, instanceId, metadata) VALUES (%s, %s, %s,%s)',
                 (scope['email'], scope["application"], scope["instanceId"], Json(ast.literal_eval(scope['metadata']))))
 
-    pprint.pprint(per_user_data)
     conn.commit()
     cur.close()
     conn.close()
