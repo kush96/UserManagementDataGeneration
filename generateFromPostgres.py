@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     for usr in unique_usr_data:
         cur.execute(
-            'INSERT INTO joveo_users (email, display_name) VALUES (%s, %s)',
+            'INSERT INTO postgres.joveo_users (email, display_name) VALUES (%s, %s)',
             (usr['email'], usr["name"]))
 
     for usrStr in per_user_data:
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         for scope in scopes:
             data = json.dumps(scope["metadata"])
             cur.execute(
-                'INSERT INTO scopes (email, application, instanceId, metadata) VALUES (%s, %s, %s,%s)',
+                'INSERT INTO postgres.scopes (email, application, instanceId, metadata) VALUES (%s, %s, %s,%s)',
                 (scope['email'], scope["application"], scope["instanceId"], Json(ast.literal_eval(scope['metadata']))))
 
     pprint.pprint(per_user_data)
