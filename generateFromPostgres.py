@@ -73,6 +73,7 @@ if __name__ == '__main__':
 
     cnt=0
     for usr in unique_usr_data:
+        cnt+=1
         try:
             cur.execute(
                 'INSERT INTO "joveo_users" (email, display_name) VALUES (%s, %s)',
@@ -83,7 +84,7 @@ if __name__ == '__main__':
             print(tb)
             raise e
 
-    print("cnt = "+cnt)
+    print("cnt = "+str(cnt))
 
     for usrStr in per_user_data:
         scopes = per_user_data[usrStr]
