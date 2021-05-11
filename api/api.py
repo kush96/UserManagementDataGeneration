@@ -112,4 +112,8 @@ def getPostgresScope():
     Constant.postgresCnt += 1
     return str(resp)
 
+@app.route('/hello', methods=['GET'])
+def hello():
+    return "hello"
+
 app.run()
