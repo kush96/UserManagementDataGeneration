@@ -61,21 +61,21 @@ def generate_random_users():
     for i in range(0, TOTAL_USER):
         user = {}
         user['emailId'] = get_one_random_name() + '@' + get_one_random_domain()
-        if(user['emailId'] in emails):
+        if (user['emailId'] in emails):
             continue
-        else :
+        else:
             emails.add(user['emailId'])
 
         user['name'] = get_one_random_name()
         user['_id'] = str(uuid.uuid1())
         scopes = []
-
+        unique_user = []
+        unique_user.append(user['emailId'])
+        unique_user.append(user['name'])
         for i in range(random.randint(0, SCOPE_COUNT)):
-            unique_user = []
             user_row = [user['_id'], user['emailId'], user['name']]
             scope = {}
-            unique_user.append(user['emailId'])
-            unique_user.append(user['name'])
+
 
             application = applications[random.randint(0, len(applications) - 1)]
             scope['application'] = application
@@ -94,8 +94,8 @@ def generate_random_users():
                 scope['instanceId'] = agency_ids[random.randint(0, len(agency_ids) - 1)]
                 metadata = {}
                 metadata['clientIds'] = [client_ids[random.randint(0, len(client_ids) - 1)],
-                                      client_ids[random.randint(0, len(client_ids) - 1)],
-                                      client_ids[random.randint(0, len(client_ids) - 1)]]
+                                         client_ids[random.randint(0, len(client_ids) - 1)],
+                                         client_ids[random.randint(0, len(client_ids) - 1)]]
                 metadata['placementIds'] = [placement_ids[random.randint(0, len(placement_ids) - 1)]]
                 scope['metadata'] = metadata
             scopeKey = user['emailId'] + "_" + scope['application'] + '_' + scope['instanceId']
