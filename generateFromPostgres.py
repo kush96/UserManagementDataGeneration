@@ -79,6 +79,7 @@ if __name__ == '__main__':
                 (usr['email'], usr["name"]))
         except Exception as e:
             tb = traceback.format_exc()
+            print(usr)
             print(tb)
             raise e
 
