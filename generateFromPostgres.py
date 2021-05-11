@@ -30,8 +30,7 @@ def fetch_users_from_file():
             scope['metadata'] = metadata
             scope['email'] = emailId
             scope['name'] = name
-
-            key = _id + '_' + name + '_' + emailId
+            key = emailId + '_' + instanceId + '_' + application
             if key in per_user_data:
                 per_user_data[key].append(scope)
             else:
