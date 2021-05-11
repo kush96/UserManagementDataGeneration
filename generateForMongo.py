@@ -55,11 +55,17 @@ writer_scope_key = csv.writer(scope_key_data_file, delimiter=',')
 
 
 def generate_random_users():
+    emails = set()
     users = []
     scopeKeySet = set()
     for i in range(0, TOTAL_USER):
         user = {}
         user['emailId'] = get_one_random_name() + '@' + get_one_random_domain()
+        if(user['emailId'] in emails):
+            continue
+        else :
+            emails.add(user['emailId'])
+
         user['name'] = get_one_random_name()
         user['_id'] = str(uuid.uuid1())
         scopes = []
