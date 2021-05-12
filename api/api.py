@@ -97,10 +97,15 @@ def getMongoScope():
 @app.route('/postgres/scope', methods=['GET'])
 def getPostgresScope():
     scope = email_app_inst[Constant.postgresCnt % totScopes]
-    cur.execute("""SELECT * FROM scopes s WHERE s.email = '{0}' AND s.application = 
-    '{1}' AND s.instanceId = '{2}'""".format(scope['email'], scope['application'],
+    x =[]
+    try :
+        cur.execute("""SELECT * FROM scopes s WHERE s.email = '{0}' AND s.application = 
+        '{1}' AND s.instanceId = '{2}'""".format(scope['email'], scope['application'],
                                                                  scope['instanceId']))
-    x = cur.fetchall()
+        x = cur.fetchall()
+    except Exception as e :
+        print(e)
+        raise e
     resp = {}
     if (len(x) != 0):
         resp = {'id': x[0][0],
