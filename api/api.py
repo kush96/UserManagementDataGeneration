@@ -36,7 +36,7 @@ def fetch_scope_key():
 fetch_scope_key()
 
 totScopes = len(email_app_inst)
-
+print("scope keys + "+str(totScopes))
 
 @app.route('/', methods=['GET'])
 def home():
